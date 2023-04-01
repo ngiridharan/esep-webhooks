@@ -16,7 +16,7 @@ public class Function
     /// <param name="input"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public string FunctionHandler(string input, ILambdaContext context)
+    public string FunctionHandler(object input, ILambdaContext context)
     {
         dynamic json = JsonConvert.DeserializeObject<dynamic>(input.ToString());
         
@@ -31,5 +31,6 @@ public class Function
         var response = client.Send(webRequest);
         using var reader = new StreamReader(response.Content.ReadAsStream());
             
-        return reader.ReadToEnd();    }
+        return reader.ReadToEnd();
+    }
 }
